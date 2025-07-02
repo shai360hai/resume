@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shai Shashonker - Full-Stack Developer Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset & Body Styling */
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #282c34; /* Dark background similar to code editors */
+            color: #abb2bf; /* Light grey text for general content */
+            font-family: 'Fira Code', monospace; /* Monospace font for code feel */
+            line-height: 1.6;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .resume-container {
+            background-color: #21252b; /* Slightly lighter dark background for the main content area */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 900px; /* Max width for better readability on large screens */
+            padding: 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Syntax Highlighting Colors */
+        .keyword { color: #c678dd; } /* Purple for keywords like public, class, string */
+        .comment { color: #5c6370; } /* Grey for comments */
+        .string { color: #98c379; } /* Green for strings */
+        .function { color: #61afef; } /* Blue for function names */
+        .variable { color: #e06c75; } /* Reddish for variables/properties */
+        .type { color: #e5c07b; } /* Orange/Yellow for types like enum, class */
+        .operator { color: #56b6c2; } /* Cyan for operators */
+        .number { color: #d19a66; } /* Orange for numbers */
+
+        /* Line Numbers */
+        .line-numbers-container {
+            display: flex;
+            width: 100%;
+        }
+
+        .line-numbers {
+            flex-shrink: 0;
+            padding-right: 15px;
+            text-align: right;
+            color: #5c6370;
+            user-select: none; /* Prevent selection of line numbers */
+            border-right: 1px solid #3e4451;
+            margin-right: 15px;
+        }
+
+        .line-numbers span {
+            display: block;
+            line-height: 1.6; /* Match content line height */
+        }
+
+        .code-content {
+            flex-grow: 1;
+            white-space: pre-wrap; /* Preserve whitespace and wrap lines */
+        }
+
+        /* Section Styling */
+        .section-header {
+            color: #61afef; /* Blue for main section headers */
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #3e4451;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        .code-block {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .indent {
+            margin-left: 20px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #3e4451;
+        }
+
+        .profile-pic-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #61afef; /* Blue border for profile pic */
+            flex-shrink: 0;
+            background-color: #3e4451; /* Placeholder background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-pic-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-pic-container .placeholder-icon {
+            font-size: 50px;
+            color: #abb2bf;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-icon {
+            color: #e5c07b; /* Orange for icons */
+            font-size: 1.1em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .resume-container {
+                padding: 20px;
+            }
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .line-numbers {
+                padding-right: 10px;
+                margin-right: 10px;
+            }
+            .code-block {
+                margin-left: 10px;
+            }
+            .indent {
+                margin-left: 10px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="resume-container">
+        <div class="line-numbers-container">
+            <div class="line-numbers" id="line-numbers"></div>
+            <div class="code-content" id="code-content">
+                <div class="profile-header">
+                    <div class="profile-pic-container">
+                        <!-- Placeholder for profile picture. Replace with your image URL if available -->
+                        <!-- <img src="your_profile_picture.jpg" alt="Shai Shashonker"> -->
+                        <i class="fas fa-user placeholder-icon"></i>
+                    </div>
+                    <div>
+                        <span class="comment">// Shai Shashonker - Full-Stack Web Developer</span><br>
+                        <span class="keyword">public class</span> <span class="type">ContactInformation</span> {<br>
+                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Name</span> <span class="operator">=</span> <span class="string">"Shai Shashonker"</span>;</span><br>
+                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Title</span> <span class="operator">=</span> <span class="string">"Fullstack Developer"</span>;</span><br>
+                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Phone</span> <span class="operator">=</span> <span class="string">"054-536-6498"</span>;</span><br>
+                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Email</span> <span class="operator">=</span> <span class="string">"shai360hai@gmail.com"</span>;</span><br>
+                        <span class="indent"><span class="keyword">public string</span> <span class="variable">LinkedIn</span> <span class="operator">=</span> <span class="string">"Shai Shashonker"</span>;</span><br>
+                        <span class="indent"><span class="keyword">public string</span> <span class="variable">GitHub</span> <span class="operator">=</span> <span class="string">"github.com/your_github_username"</span>; <span class="comment">// Replace with your actual GitHub username</span></span><br>
+                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Portfolio</span> <span class="operator">=</span> <span class="string">"your_portfolio_url"</span>; <span class="comment">// Replace with your actual portfolio URL</span></span><br>
+                        }
+                    </div>
+                </div>
+
+                <div class="section-header">Professional Summary</div>
+                <div class="code-block">
+                    <span class="keyword">public class</span> <span class="type">ProfessionalSummary</span> {<br>
+                    <span class="indent"><span class="comment">// Results-driven Full-Stack Developer with expertise in Python, JavaScript, and React.</span></span><br>
+                    <span class="indent"><span class="comment">// Proven experience in building web applications with clean code and intuitive UIs.</span></span><br>
+                    <span class="indent"><span class="comment">// Combines a rich background in sales and team leadership with newfound proficiency in software development,</span></span><br>
+                    <span class="indent"><span class="comment">// aiming to integrate into the high-tech industry by applying practical projects and writing high-quality code.</span></span><br>
+                    }
+                </div>
+
+                <div class="section-header">Technical Skills</div>
+                <div class="code-block">
+                    <span class="keyword">public enum</span> <span class="type">TechnicalSkills</span> {<br>
+                    <span class="indent"><span class="variable">LANGUAGES_AND_TECHNOLOGIES</span><span class="operator">:</span> <span class="string">"Python, JavaScript, TypeScript, React, Node.js, Express, C#, C++"</span>,</span><br>
+                    <span class="indent"><span class="variable">DATABASES</span><span class="operator">:</span> <span class="string">"MySQL, SQLite, SQL"</span>,</span><br>
+                    <span class="indent"><span class="variable">TOOLS_AND_PLATFORMS</span><span class="operator">:</span> <span class="string">"Git, GitHub, Docker, JSON, REST APIs"</span></span><br>
+                    }
+                </div>
+
+                <div class="section-header">Selected Projects</div>
+                <div class="code-block">
+                    <span class="keyword">public partial class</span> <span class="type">SelectedProjects</span> {<br>
+                    <span class="indent"><span class="keyword">private void</span> <span class="function">RealTimeWeatherApp</span>() {</span><br>
+                    <span class="indent indent"><span class="comment">// Developed an application using Python and PyQt.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Displays real-time weather data via OpenWeather API.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Features a modern user interface.</span></span><br>
+                    <span class="indent">}</span><br><br>
+                    <span class="indent"><span class="keyword">private void</span> <span class="function">BookManagementSystem</span>() {</span><br>
+                    <span class="indent indent"><span class="comment">// Designed and developed a complete CRUD system.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Implemented in Python and SQLite for efficient book and client management.</span></span><br>
+                    <span class="indent">}</span><br><br>
+                    <span class="indent"><span class="keyword">private void</span> <span class="function">FullWebApp</span>() {</span><br>
+                    <span class="indent indent"><span class="comment">// Built a comprehensive web application.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Includes both client-side (React) and server-side (Node.js, Express) development.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Features API implementation for interaction and user authentication.</span></span><br>
+                    <span class="indent">}</span><br>
+                    }
+                </div>
+
+                <div class="section-header">Work Experience</div>
+                <div class="code-block">
+                    <span class="keyword">public static class</span> <span class="type">WorkExperience</span> {<br>
+                    <span class="indent"><span class="keyword">public class</span> <span class="type">Xpeng</span> {</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Title</span> <span class="operator">=</span> <span class="string">"Marketing & Sales Expert"</span>;</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Duration</span> <span class="operator">=</span> <span class="string">"2023 – Present"</span>;</span><br>
+                    <span class="indent indent"><span class="comment">// Promoted and sold advanced electric vehicles in the Israeli market.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Consistently met business targets.</span></span><br>
+                    <span class="indent">}</span><br><br>
+                    <span class="indent"><span class="keyword">public class</span> <span class="type">DelekMotorsBMW</span> {</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Title</span> <span class="operator">=</span> <span class="string">"Account Manager"</span>;</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Duration</span> <span class="operator">=</span> <span class="string">"2021 – 2023"</span>;</span><br>
+                    <span class="indent indent"><span class="comment">// Managed and retained premium client relationships in the luxury automotive sector.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Included negotiation and achieving high client satisfaction.</span></span><br>
+                    <span class="indent">}</span><br><br>
+                    <span class="indent"><span class="comment">// Other previous roles (briefed to fit layout):</span></span><br>
+                    <span class="indent"><span class="comment">// Business Development Representative (Ilan Shahar, 2019 – 2021)</span></span><br>
+                    <span class="indent"><span class="comment">// Sales Representative (Cellcom, 2017 – 2019)</span></span><br>
+                    <span class="indent"><span class="comment">// Sales Associate (Wine in the City, 2015 – 2017)</span></span><br>
+                    <span class="indent"><span class="comment">// Security (Israel Railways, 2013 – 2015)</span></span><br>
+                    }
+                </div>
+
+                <div class="section-header">Education</div>
+                <div class="code-block">
+                    <span class="keyword">public static class</span> <span class="type">Education</span> {<br>
+                    <span class="indent"><span class="keyword">public class</span> <span class="type">JohnBryce</span> {</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Course</span> <span class="operator">=</span> <span class="string">"Full Stack Python Course"</span>;</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Duration</span> <span class="operator">=</span> <span class="string">"2023–2024"</span>;</span><br>
+                    <span class="indent">}</span><br><br>
+                    <span class="indent"><span class="keyword">public class</span> <span class="type">HighSchool</span> {</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Diploma</span> <span class="operator">=</span> <span class="string">"High School Diploma (Computer Science Major)"</span>;</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">School</span> <span class="operator">=</span> <span class="string">"Rogozin Kiryat Ata"</span>;</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Year</span> <span class="operator">=</span> <span class="string">"2010"</span>;</span><br>
+                    <span class="indent">}</span><br>
+                    }
+                </div>
+
+                <div class="section-header">Military Service</div>
+                <div class="code-block">
+                    <span class="keyword">public static class</span> <span class="type">MilitaryService</span> {<br>
+                    <span class="indent"><span class="keyword">string</span> <span class="variable">Rank</span> <span class="operator">=</span> <span class="string">"Sergeant"</span>;</span><br>
+                    <span class="indent"><span class="keyword">string</span> <span class="variable">Unit</span> <span class="operator">=</span> <span class="string">"Israeli Air Force"</span>;</span><br>
+                    <span class="indent"><span class="keyword">string</span> <span class="variable">Duration</span> <span class="operator">=</span> <span class="string">"2010–2013"</span>;</span><br>
+                    <span class="indent"><span class="comment">// Completed a command course with excellence (Rifleman 06).</span></span><br>
+                    }
+                </div>
+
+                <div class="section-header">Languages</div>
+                <div class="code-block">
+                    <span class="keyword">public enum</span> <span class="type">Languages</span> {<br>
+                    <span class="indent"><span class="variable">HEBREW</span><span class="operator">:</span> <span class="string">"Native"</span>,</span><br>
+                    <span class="indent"><span class="variable">ENGLISH</span><span class="operator">:</span> <span class="string">"High Proficiency"</span></span><br>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to generate line numbers
+        function generateLineNumbers() {
+            const codeContent = document.getElementById('code-content');
+            const lineNumbersDiv = document.getElementById('line-numbers');
+            const lines = codeContent.innerHTML.split('<br>');
+            let lineNum = 1;
+            lineNumbersDiv.innerHTML = ''; // Clear existing numbers
+
+            lines.forEach(line => {
+                const span = document.createElement('span');
+                span.textContent = lineNum++;
+                lineNumbersDiv.appendChild(span);
+            });
+        }
+
+        // Call on load and resize
+        window.onload = generateLineNumbers;
+        window.onresize = generateLineNumbers;
+
+        // Re-generate line numbers if content changes (e.g., dynamic updates)
+        // You might need to call generateLineNumbers() after any dynamic content insertion
+    </script>
+</body>
+</html>
