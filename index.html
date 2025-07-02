@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>שי ששונקר - קורות חיים של מפתח Full-Stack</title>
+    <title>Shai Shashonker - Full-Stack Developer Resume</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Basic Reset & Body Styling */
         body {
             margin: 0;
-            padding: 15px; /* Reduced padding */
+            padding: 15px; /* Slightly reduced padding */
             background-color: #282c34; /* Dark background similar to code editors */
             color: #abb2bf; /* Light grey text for general content */
             font-family: 'Fira Code', monospace; /* Monospace font for code feel */
-            line-height: 1.5; /* Reduced line height */
+            line-height: 1.5; /* Slightly reduced line height */
             font-size: 14px;
             display: flex;
             justify-content: center;
@@ -28,10 +28,11 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             width: 100%;
             max-width: 900px; /* Max width for better readability on large screens */
-            padding: 25px; /* Reduced padding */
+            padding: 25px; /* Slightly reduced padding */
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
+            position: relative; /* Needed for modal positioning */
         }
 
         /* Syntax Highlighting Colors */
@@ -74,15 +75,15 @@
         .section-header {
             color: #61afef; /* Blue for main section headers */
             font-size: 1.2em;
-            margin-bottom: 8px; /* Reduced margin */
+            margin-bottom: 8px; /* Slightly reduced margin */
             border-bottom: 1px solid #3e4451;
-            padding-bottom: 4px; /* Reduced padding */
-            margin-top: 18px; /* Reduced margin */
+            padding-bottom: 4px; /* Slightly reduced padding */
+            margin-top: 18px; /* Slightly reduced margin */
         }
 
         .code-block {
             margin-left: 20px;
-            margin-bottom: 12px; /* Reduced margin */
+            margin-bottom: 12px; /* Slightly reduced margin */
         }
 
         .indent {
@@ -92,9 +93,9 @@
         .profile-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px; /* Reduced margin */
-            gap: 15px; /* Reduced gap */
-            padding-bottom: 12px; /* Reduced padding */
+            margin-bottom: 20px; /* Slightly reduced margin */
+            gap: 20px;
+            padding-bottom: 12px; /* Slightly reduced padding */
             border-bottom: 1px solid #3e4451;
         }
 
@@ -139,13 +140,113 @@
             font-size: 1.1em;
         }
 
+        /* Copy message styling */
+        .copy-message {
+            margin-left: 10px;
+            color: #98c379; /* Green like strings */
+            font-size: 0.9em;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .copy-message.show {
+            opacity: 1;
+        }
+
+        /* Link styling for code */
+        .code-link {
+            color: #61afef; /* Blue like functions */
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .code-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #21252b;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            color: #abb2bf;
+            max-width: 350px;
+            width: 90%;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h3 {
+            color: #61afef;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-button {
+            background-color: #61afef; /* Blue button */
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            text-decoration: none; /* For anchor tags */
+            display: block; /* Make anchor tags behave like block buttons */
+        }
+
+        .modal-button:hover {
+            background-color: #569cd6; /* Darker blue on hover */
+            transform: translateY(-2px);
+        }
+
+        .modal-button.cancel {
+            background-color: #e06c75; /* Red for cancel */
+        }
+
+        .modal-button.cancel:hover {
+            background-color: #c2505a;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
             }
             .resume-container {
-                padding: 15px;
+                padding: 20px;
             }
             .profile-header {
                 flex-direction: column;
@@ -179,30 +280,51 @@
                         <i class="fas fa-user placeholder-icon"></i>
                     </div>
                     <div>
-                        <span class="comment">// שי ששונקר - מפתח Full-Stack</span><br>
+                        <span class="comment">// Shai Shashonker - Full-Stack Web Developer</span><br>
                         <span class="keyword">public class</span> <span class="type">ContactInformation</span> {<br>
-                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Name</span> <span class="operator">=</span> <span class="string">"שי ששונקר"</span>;</span><br>
+                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Name</span> <span class="operator">=</span> <span class="string">"Shai Shashonker"</span>;</span><br>
                         <span class="indent"><span class="keyword">public string</span> <span class="variable">Title</span> <span class="operator">=</span> <span class="string">"Fullstack Developer"</span>;</span><br>
-                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Phone</span> <span class="operator">=</span> <span class="string">"054-536-6498"</span>;</span><br>
-                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Email</span> <span class="operator">=</span> <span class="string">"shai360hai@gmail.com"</span>;</span><br>
+                        <span class="indent">
+                            <span class="keyword">public string</span> <span class="variable">Phone</span> <span class="operator">=</span>
+                            <a href="#" class="code-link" onclick="showPhoneOptions(event, '0545366498')">
+                                <span class="string">"054-536-6498"</span>
+                            </a>;
+                        </span><br>
+                        <span class="indent">
+                            <span class="keyword">public string</span> <span class="variable">Email</span> <span class="operator">=</span>
+                            <a href="#" class="code-link" onclick="copyToClipboard('shai360hai@gmail.com', event, 'emailCopyMessage')">
+                                <span class="string">"shai360hai@gmail.com"</span>
+                            </a>;
+                            <span id="emailCopyMessage" class="copy-message">Copied!</span>
+                        </span><br>
                         <span class="indent"><span class="keyword">public string</span> <span class="variable">LinkedIn</span> <span class="operator">=</span> <span class="string">"Shai Shashonker"</span>;</span><br>
-                        <span class="indent"><span class="keyword">public string</span> <span class="variable">GitHub</span> <span class="operator">=</span> <span class="string">"https://github.com/shai360hai/"</span>; <span class="comment">// החלף עם שם המשתמש שלך</span></span><br>
-                        <span class="indent"><span class="keyword">public string</span> <span class="variable">Portfolio</span> <span class="operator">=</span> <span class="string">"https://shai-portfolio-ruddy.vercel.app/"</span>; <span class="comment">// החלף עם כתובת הפורטפוליו שלך</span></span><br>
+                        <span class="indent">
+                            <span class="keyword">public string</span> <span class="variable">GitHub</span> <span class="operator">=</span>
+                            <a href="https://github.com/shai360hai/" class="code-link" target="_blank">
+                                <span class="string">"https://github.com/shai360hai/"</span>
+                            </a>; <span class="comment">//</span>
+                        </span><br>
+                        <span class="indent">
+                            <span class="keyword">public string</span> <span class="variable">Portfolio</span> <span class="operator">=</span>
+                            <a href="https://shai-portfolio-ruddy.vercel.app/" class="code-link" target="_blank">
+                                <span class="string">"https://shai-portfolio-ruddy.vercel.app/"</span>
+                            </a>; <span class="comment">//</span>
+                        </span><br>
                         }
                     </div>
                 </div>
 
-                <div class="section-header">תקציר מקצועי</div>
+                <div class="section-header">Professional Summary</div>
                 <div class="code-block">
                     <span class="keyword">public class</span> <span class="type">ProfessionalSummary</span> {<br>
-                    <span class="indent"><span class="comment">// מפתח Full-Stack מונחה תוצאות עם מומחיות ב-Python, JavaScript ו-React.</span></span><br>
-                    <span class="indent"><span class="comment">// ניסיון מוכח בבניית יישומי רשת עם קוד נקי וממשקי משתמש אינטואיטיביים.</span></span><br>
-                    <span class="indent"><span class="comment">// משלב רקע עשיר במכירות והנהגת צוות עם מיומנות חדשה בפיתוח תוכנה,</span></span><br>
-                    <span class="indent"><span class="comment">// במטרה להשתלב בתעשיית ההייטק על ידי יישום פרויקטים מעשיים וכתיבת קוד איכותי.</span></span><br>
+                    <span class="indent"><span class="comment">// Results-driven Full-Stack Developer with expertise in Python, JavaScript, and React.</span></span><br>
+                    <span class="indent"><span class="comment">// Proven experience in building web applications with clean code and intuitive UIs.</span></span><br>
+                    <span class="indent"><span class="comment">// Combines a rich background in sales and team leadership with newfound proficiency in software development,</span></span><br>
+                    <span class="indent"><span class="comment">// aiming to integrate into the high-tech industry by applying practical projects and writing high-quality code.</span></span><br>
                     }
                 </div>
 
-                <div class="section-header">כישורים טכניים</div>
+                <div class="section-header">Technical Skills</div>
                 <div class="code-block">
                     <span class="keyword">public enum</span> <span class="type">TechnicalSkills</span> {<br>
                     <span class="indent"><span class="variable">LANGUAGES_AND_TECHNOLOGIES</span><span class="operator">:</span> <span class="string">"Python, JavaScript, TypeScript, React, Node.js, Express, C#, C++"</span>,</span><br>
@@ -211,81 +333,92 @@
                     }
                 </div>
 
-                <div class="section-header">פרויקטים נבחרים</div>
+                <div class="section-header">Selected Projects</div>
                 <div class="code-block">
                     <span class="keyword">public partial class</span> <span class="type">SelectedProjects</span> {<br>
                     <span class="indent"><span class="keyword">private void</span> <span class="function">RealTimeWeatherApp</span>() {</span><br>
-                    <span class="indent indent"><span class="comment">// פיתוח אפליקציה באמצעות Python ו-PyQt.</span></span><br>
-                    <span class="indent indent"><span class="comment">// מציגה נתוני מזג אוויר בזמן אמת באמצעות OpenWeather API.</span></span><br>
-                    <span class="indent indent"><span class="comment">// כוללת ממשק משתמש מודרני.</span></span><br>
-                    <span class="indent">}</span><br>
+                    <span class="indent indent"><span class="comment">// Developed an application using Python and PyQt.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Displays real-time weather data via OpenWeather API.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Features a modern user interface.</span></span><br>
+                    <span class="indent">}</span><br><br>
                     <span class="indent"><span class="keyword">private void</span> <span class="function">BookManagementSystem</span>() {</span><br>
-                    <span class="indent indent"><span class="comment">// עיצוב ופיתוח מערכת CRUD מלאה.</span></span><br>
-                    <span class="indent indent"><span class="comment">// מיושמת ב-Python ו-SQLite לניהול יעיל של ספרים ולקוחות.</span></span><br>
-                    <span class="indent">}</span><br>
+                    <span class="indent indent"><span class="comment">// Designed and developed a complete CRUD system.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Implemented in Python and SQLite for efficient book and client management.</span></span><br>
+                    <span class="indent">}</span><br><br>
                     <span class="indent"><span class="keyword">private void</span> <span class="function">FullWebApp</span>() {</span><br>
-                    <span class="indent indent"><span class="comment">// בניית אפליקציית רשת מקיפה.</span></span><br>
-                    <span class="indent indent"><span class="comment">// כוללת פיתוח צד לקוח (React) וצד שרת (Node.js, Express).</span></span><br>
-                    <span class="indent indent"><span class="comment">// כוללת יישום API לאינטראקציה ואימות משתמשים.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Built a comprehensive web application.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Includes both client-side (React) and server-side (Node.js, Express) development.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Features API implementation for interaction and user authentication.</span></span><br>
                     <span class="indent">}</span><br>
                     }
                 </div>
 
-                <div class="section-header">ניסיון תעסוקתי</div>
+                <div class="section-header">Work Experience</div>
                 <div class="code-block">
                     <span class="keyword">public static class</span> <span class="type">WorkExperience</span> {<br>
                     <span class="indent"><span class="keyword">public class</span> <span class="type">Xpeng</span> {</span><br>
                     <span class="indent indent"><span class="keyword">string</span> <span class="variable">Title</span> <span class="operator">=</span> <span class="string">"Marketing & Sales Expert"</span>;</span><br>
                     <span class="indent indent"><span class="keyword">string</span> <span class="variable">Duration</span> <span class="operator">=</span> <span class="string">"2023 – Present"</span>;</span><br>
-                    <span class="indent indent"><span class="comment">// קידום ומכירה של כלי רכב חשמליים מתקדמים בשוק הישראלי.</span></span><br>
-                    <span class="indent indent"><span class="comment">// עמידה עקבית ביעדים עסקיים.</span></span><br>
-                    <span class="indent">}</span><br>
+                    <span class="indent indent"><span class="comment">// Promoted and sold advanced electric vehicles in the Israeli market.</span></span><br>
+                    <span class="indent indent"><span class="comment">// Consistently met business targets.</span></span><br>
+                    <span class="indent">}</span><br><br>
                     <span class="indent"><span class="keyword">public class</span> <span class="type">DelekMotorsBMW</span> {</span><br>
                     <span class="indent indent"><span class="keyword">string</span> <span class="variable">Title</span> <span class="operator">=</span> <span class="string">"Account Manager"</span>;</span><br>
                     <span class="indent indent"><span class="keyword">string</span> <span class="variable">Duration</span> <span class="operator">=</span> <span class="string">"2021 – 2023"</span>;</span><br>
-                    <span class="indent indent"><span class="comment">// ניהול ושימור קשרי לקוחות פרימיום בתחום הרכב היוקרתי.</span></span><br>
-                    <span class="indent indent"><span class="comment">// כלל ניהול משא ומתן והשגת שביעות רצון גבוהה של לקוחות.</span></span><br>
-                    <span class="indent">}</span><br>
-                    <span class="indent"><span class="comment">// תפקידים קודמים נוספים (בתמציתיות):</span></span><br>
-                    <span class="indent"><span class="comment">// Business Development Representative (אילן שחר, 2019 – 2021)</span></span><br>
-                    <span class="indent"><span class="comment">// Sales Representative (סלקום, 2017 – 2019)</span></span><br>
-                    <span class="indent"><span class="comment">// Sales Associate (יין בעיר, 2015 – 2017)</span></span><br>
-                    <span class="indent"><span class="comment">// Security (רכבת ישראל, 2013 – 2015)</span></span><br>
+                    <span class="indent indent"><span class="comment">// Managed and retained premium client relationships in the luxury automotive sector.</span></span><br>
+                    <span class="indent">}</span><br><br>
+                    <span class="indent"><span class="comment">// Other previous roles (briefed to fit layout):</span></span><br>
+                    <span class="indent"><span class="comment">// Business Development Representative (Ilan Shahar, 2019 – 2021)</span></span><br>
+                    <span class="indent"><span class="comment">// Sales Representative (Cellcom, 2017 – 2019)</span></span><br>
+                    <span class="indent"><span class="comment">// Sales Associate (Wine in the City, 2015 – 2017)</span></span><br>
+                    <span class="indent"><span class="comment">// Security (Israel Railways, 2013 – 2015)</span></span><br>
                     }
                 </div>
 
-                <div class="section-header">השכלה</div>
+                <div class="section-header">Education</div>
                 <div class="code-block">
                     <span class="keyword">public static class</span> <span class="type">Education</span> {<br>
                     <span class="indent"><span class="keyword">public class</span> <span class="type">JohnBryce</span> {</span><br>
                     <span class="indent indent"><span class="keyword">string</span> <span class="variable">Course</span> <span class="operator">=</span> <span class="string">"Full Stack Python Course"</span>;</span><br>
                     <span class="indent indent"><span class="keyword">string</span> <span class="variable">Duration</span> <span class="operator">=</span> <span class="string">"2023–2024"</span>;</span><br>
-                    <span class="indent">}</span><br>
+                    <span class="indent">}</span><br><br>
                     <span class="indent"><span class="keyword">public class</span> <span class="type">HighSchool</span> {</span><br>
-                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Diploma</span> <span class="operator">=</span> <span class="string">"תעודת בגרות (מגמת מדעי המחשב)"</span>;</span><br>
-                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">School</span> <span class="operator">=</span> <span class="string">"רוגוזין קריית אתא"</span>;</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">Diploma</span> <span class="operator">=</span> <span class="string">"High School Diploma (Computer Science Major)"</span>;</span><br>
+                    <span class="indent indent"><span class="keyword">string</span> <span class="variable">School</span> <span class="operator">=</span> <span class="string">"Rogozin Kiryat Ata"</span>;</span><br>
                     <span class="indent indent"><span class="keyword">string</span> <span class="variable">Year</span> <span class="operator">=</span> <span class="string">"2010"</span>;</span><br>
                     <span class="indent">}</span><br>
                     }
                 </div>
 
-                <div class="section-header">שירות צבאי</div>
+                <div class="section-header">Military Service</div>
                 <div class="code-block">
                     <span class="keyword">public static class</span> <span class="type">MilitaryService</span> {<br>
-                    <span class="indent"><span class="keyword">string</span> <span class="variable">Rank</span> <span class="operator">=</span> <span class="string">"סמל"</span>;</span><br>
-                    <span class="indent"><span class="keyword">string</span> <span class="variable">Unit</span> <span class="operator">=</span> <span class="string">"חיל האוויר הישראלי"</span>;</span><br>
+                    <span class="indent"><span class="keyword">string</span> <span class="variable">Rank</span> <span class="operator">=</span> <span class="string">"Sergeant"</span>;</span><br>
+                    <span class="indent"><span class="keyword">string</span> <span class="variable">Unit</span> <span class="operator">=</span> <span class="string">"Israeli Air Force"</span>;</span><br>
                     <span class="indent"><span class="keyword">string</span> <span class="variable">Duration</span> <span class="operator">=</span> <span class="string">"2010–2013"</span>;</span><br>
-                    <span class="indent"><span class="comment">// סיים קורס פיקוד בהצטיינות (רובאי 06).</span></span><br>
+                    <span class="indent"><span class="comment">// Completed a command course with excellence (Rifleman 06).</span></span><br>
                     }
                 </div>
 
-                <div class="section-header">שפות</div>
+                <div class="section-header">Languages</div>
                 <div class="code-block">
                     <span class="keyword">public enum</span> <span class="type">Languages</span> {<br>
-                    <span class="indent"><span class="variable">HEBREW</span><span class="operator">:</span> <span class="string">"שפת אם"</span>,</span><br>
-                    <span class="indent"><span class="variable">ENGLISH</span><span class="operator">:</span> <span class="string">"רמה גבוהה"</span></span><br>
+                    <span class="indent"><span class="variable">HEBREW</span><span class="operator">:</span> <span class="string">"Native"</span>,</span><br>
+                    <span class="indent"><span class="variable">ENGLISH</span><span class="operator">:</span> <span class="string">"High Proficiency"</span></span><br>
                     }
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phone Options Modal -->
+    <div id="phoneOptionsModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Contact Options</h3>
+            <div class="modal-buttons">
+                <a id="callButton" href="#" class="modal-button"><i class="fas fa-phone"></i> Call</a>
+                <a id="whatsappButton" href="#" target="_blank" class="modal-button"><i class="fab fa-whatsapp"></i> WhatsApp Message</a>
+                <button onclick="hidePhoneOptions()" class="modal-button cancel">Cancel</button>
             </div>
         </div>
     </div>
@@ -295,33 +428,74 @@
         function generateLineNumbers() {
             const codeContent = document.getElementById('code-content');
             const lineNumbersDiv = document.getElementById('line-numbers');
-            // Using a more robust way to count lines that respects the pre-wrap style
-            const lines = codeContent.innerHTML.split(/<br\s*\/?>/g);
+            // Use innerText to avoid counting HTML tags as lines
+            const lines = codeContent.innerText.split('\n');
             let lineNum = 1;
             lineNumbersDiv.innerHTML = ''; // Clear existing numbers
 
-            // A simple approximation for line count based on content height
-            const lineHeight = parseFloat(getComputedStyle(codeContent).lineHeight);
-            const totalLines = Math.ceil(codeContent.scrollHeight / lineHeight);
+            lines.forEach(line => {
+                const span = document.createElement('span');
+                span.textContent = lineNum++;
+                lineNumbersDiv.appendChild(span);
+            });
+        }
 
-            for (let i = 1; i <= totalLines; i++) {
-                 const span = document.createElement('span');
-                 span.textContent = i;
-                 lineNumbersDiv.appendChild(span);
+        // Function to copy text to clipboard
+        function copyToClipboard(text, event, messageId) {
+            event.preventDefault(); // Prevent default link behavior (e.g., navigating)
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                const messageSpan = document.getElementById(messageId);
+                if (messageSpan) {
+                    messageSpan.classList.add('show');
+                    setTimeout(() => {
+                        messageSpan.classList.remove('show');
+                    }, 1500); // Hide "Copied!" message after 1.5 seconds
+                }
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
             }
+            document.body.removeChild(textArea);
+        }
+
+        // Functions for phone options modal
+        function showPhoneOptions(event, phoneNumber) {
+            event.preventDefault(); // Prevent default link behavior
+            const modal = document.getElementById('phoneOptionsModal');
+            const callButton = document.getElementById('callButton');
+            const whatsappButton = document.getElementById('whatsappButton');
+
+            callButton.href = `tel:${phoneNumber}`;
+            // WhatsApp link for Israel (972) and removing leading zero if present
+            const waNumber = phoneNumber.startsWith('0') ? '972' + phoneNumber.substring(1) : phoneNumber;
+            whatsappButton.href = `https://wa.me/${waNumber}`;
+
+            modal.classList.add('show');
+        }
+
+        function hidePhoneOptions() {
+            const modal = document.getElementById('phoneOptionsModal');
+            modal.classList.remove('show');
         }
 
         // Call on load and resize
-        window.onload = generateLineNumbers;
+        window.onload = () => {
+            generateLineNumbers();
+            // Add event listener to hide modal when clicking outside
+            document.getElementById('phoneOptionsModal').addEventListener('click', (e) => {
+                if (e.target.id === 'phoneOptionsModal') {
+                    hidePhoneOptions();
+                }
+            });
+        };
         window.onresize = generateLineNumbers;
 
-        // Use MutationObserver to detect content changes for robust line numbering
-        const observer = new MutationObserver(generateLineNumbers);
-        observer.observe(document.getElementById('code-content'), {
-            childList: true,
-            characterData: true,
-            subtree: true
-        });
+        // Re-generate line numbers if content changes (e.g., dynamic updates)
+        // You might need to call generateLineNumbers() after any dynamic content insertion
     </script>
 </body>
 </html>
